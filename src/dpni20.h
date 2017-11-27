@@ -60,6 +60,7 @@ struct dpni20_s {
     unsigned char dpni_mcat[DPNI_MCAT_SIZ][6];	/* C Requested MCAT */
     int dpni_nptts;				/* C # of PTT entries */
     unsigned char dpni_ptt[DPNI_PTT_SIZ][6];	/* C Requested PTT */
+    char dpni_vdenam[PATH_MAX];     /* Dupe of dpnu_ifname for VDE socket name*/
 };
 
 /* Commands to and from DP and KLH10 NI20 driver */

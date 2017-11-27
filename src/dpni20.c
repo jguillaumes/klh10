@@ -504,13 +504,20 @@ void net_init(struct dpni20_s *dpni)
        the ethernet address for the selected interface.
     */
 
-    npf.osnpf_ifnam = dpni->dpni_ifnam;
     npf.osnpf_ifmeth = dpni->dpni_ifmeth;
     npf.osnpf_dedic = dpni->dpni_dedic;
     npf.osnpf_rdtmo = dpni->dpni_rdtmo;
     npf.osnpf_backlog = dpni->dpni_backlog;
     npf.osnpf_ip.ia_addr = ehost_ip;
     npf.osnpf_tun.ia_addr = tun_ip;
+    
+    /* Use long name when using VDE */
+    if (!strncmp(npf.osnpf_ifmeth,"vde",3)) {
+        npf.osnpf_ifnam = dpni->dpni_vdenam;
+    } else {
+        npf.osnpf_ifnam = dpni->dpni_ifnam;
+    }
+    
     /* Ether addr is both a potential arg and a returned value;
        the packetfilter open may use and/or change it.
     */
