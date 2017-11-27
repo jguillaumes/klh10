@@ -2295,8 +2295,8 @@ osn_pfinit_vde(struct pfdata *pfdata, struct osnpf *osnpf, void *pfarg)
 
     memset(&voa, 0, sizeof(voa));
 
-    if (!(pfdata->pf_handle = (void*) vde_open(devname, "simh", &voa))) {
-	syserr(errno, "Can't open VDE device \"%s\"", devname);
+    if (!(pfdata->pf_handle = (void*) vde_open(devname, "klh10", &voa))) {
+        syserr(errno, "Can't open VDE device \"%s\"", devname);
     } else {
 	pfdata->pf_fd = vde_datafd((VDECONN*)(pfdata->pf_handle));
 	pfdata->pf_meth = PF_METH_VDE;

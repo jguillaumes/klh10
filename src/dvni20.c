@@ -763,6 +763,13 @@ ni20_init(struct device *d,
     if (!(*ni->ni_dv.dv_evreg)((struct device *)ni, ni20_evhrwak, &ev)) {
 	if (of) fprintf(of, "NI20 event reg failed!\n");
 	return FALSE;
+      /* Pass VDE interface name, if present */
+      if (strncmp(dpc->dpni_ifmeth, "vde", 3)==0) {
+          strncpy(dpc->dpni_vdenam, ni->ni_ifnam, sizeof(dpc->dpni_vdenam)-1);
+      } else {
+          dpc->dpni_vdenam[0] = '\0';
+      }
+        
     }
   }
 #endif /* KLH10_DEV_DPNI20 */
