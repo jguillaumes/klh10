@@ -19,3 +19,4 @@ new
 src/tags
 src/config.h.in
 tmp*/*
+*~
