@@ -2,7 +2,7 @@
 */
 /* $Id: dpni20.c,v 2.7 2003/02/23 18:07:50 klh Exp $
 */
-/*  Copyright © 1994, 2001 Kenneth L. Harrenstien
+/*  Copyright ï¿½ 1994, 2001 Kenneth L. Harrenstien
 **  All Rights Reserved
 **
 **  This file is part of the KLH10 Distribution.  Use, modification, and
@@ -466,10 +466,13 @@ void net_init(struct dpni20_s *dpni)
     memcpy((char *)&tun_ip, (char *)&dpni->dpni_tun, 4);
 
     /* Ensure network device name, if specified, isn't too long */
-    if (dpni->dpni_ifnam[0] && (strlen(dpni->dpni_ifnam)
-		>= sizeof(ifr.ifr_name))) {
-	esfatal(0, "interface name \"%s\" too long - max %d",
-		dpni->dpni_ifnam, (int)sizeof(ifr.ifr_name));
+    /* Don't do this test for VDE devices, which can be longer */
+    if (strncmp(dpni->dpni_ifmeth, "vde", sizeof(dpni->dpni_ifmeth)-1)) {
+        if (dpni->dpni_ifnam[0] && (strlen(dpni->dpni_ifnam)
+                                    >= sizeof(ifr.ifr_name))) {
+            esfatal(0, "interface name \"%s\" too long - max %d",
+                    dpni->dpni_ifnam, (int)sizeof(ifr.ifr_name));
+        }
     }
 
     /* Determine network device to use, if none was specified (this only
