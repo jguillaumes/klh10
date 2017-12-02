@@ -2,7 +2,7 @@
 */
 /* $Id: dpni20.c,v 2.7 2003/02/23 18:07:50 klh Exp $
 */
-/*  Copyright � 1994, 2001 Kenneth L. Harrenstien
+/*  Copyright © 1994, 2001 Kenneth L. Harrenstien
 **  All Rights Reserved
 **
 **  This file is part of the KLH10 Distribution.  Use, modification, and
