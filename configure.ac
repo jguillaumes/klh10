@@ -33,7 +33,7 @@ do
 	*)	NEWCFLAGS="$NEWCFLAGS $cf"	;;
     esac
 done
-CFLAGS="$NEWCFLAGS -g3 -O3"
+CFLAGS="$NEWCFLAGS -g -O2"
 
 # -------------------------------------------------------------------------
 # Check whether we want VDE support
